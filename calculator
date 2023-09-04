@@ -1,53 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Simple Calculator</title>
-    <style>
-        button {
-            margin: 5px; /* Add spacing around buttons */
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+<style>
+        html, body{
+    height:100%;
+    width:100%;
+}
+
+.button{
+    padding: 20px;
+    margin: 1px 3px;
+    border:2px solid black;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.row{
+    margin: 8px 0px;
+}
+
+.row input{
+    height:50px;
+    width:230px;
+    border:3px solid black;
+    border-radius: 9px;
+}
+.text-center{
+    text-align: center;
+}
+
+.bg-blue{
+    background:blue
+}
+
+.mx-auto{
+    margin:auto
+}
+
+.flex{
+    display:flex;
+}
+
+.flex-col{
+    flex-direction:column;
+}
+
+.item-center{
+    align-items: center;
+}
+</style>
+
 </head>
 <body>
-    <h1>Simple Calculator</h1>
-    <input type="text" id="display" disabled><br>
-    <button onclick="clearDisplay()">C</button>
-    <button onclick="appendToDisplay('7')">7</button>
-    <button onclick="appendToDisplay('8')">8</button>
-    <button onclick="appendToDisplay('9')">9</button>
-    <button onclick="appendToDisplay('+')">+</button><br>
-    <button onclick="appendToDisplay('4')">4</button>
-    <button onclick="appendToDisplay('5')">5</button>
-    <button onclick="appendToDisplay('6')">6</button>
-    <button onclick="appendToDisplay('-')">-</button><br>
-    <button onclick="appendToDisplay('1')">1</button>
-    <button onclick="appendToDisplay('2')">2</button>
-    <button onclick="appendToDisplay('3')">3</button>
-    <button onclick="appendToDisplay('*')">*</button><br>
-    <button onclick="appendToDisplay('0')">0</button>
-    <button onclick="appendToDisplay('.')">.</button>
-    <button onclick="calculateResult()">=</button>
-    <button onclick="appendToDisplay('/')">/</button><br>
+ 
+    <h1 class="text-center">Calculator</h1>
+    <div  class="container flex flex-col item-center mx-auto ">
+        <div class="row">
+            <input class="input" type="text" id="t1">
+        </div>
+        <div class="row">
+            <button class="button" id="clr" onclick="clr()">Cl</button>
+            <button class="button" id="val" onclick="dis('%')">%</button>
+            <button class="button" id="cl" onclick="cl()">bs</button>
+            <button class="button" id="val" onclick="dis('/')">/</button>
+        </div>
+        <div class="row">
+            <button class="button" id="val" onclick="dis('7')">7</button>
+            <button class="button" id="val" onclick="dis('8')">8</button>
+            <button class="button" id="val" onclick="dis('9')">9</button>
+            <button class="button" id="val" onclick="dis('*')">*</button>
+        </div>
+        <div class="row">
+            <button class="button" id="val" onclick="dis('4')">4</button>
+            <button class="button" id="val" onclick="dis('5')">5</button>
+            <button class="button" id="val" onclick="dis('6')">6</button>
+            <button class="button" id="val" onclick="dis('-')">-</button>
+        </div>
+        <div class="row">
+            <button class="button" id="val" onclick="dis('1')">1</button>
+            <button class="button" id="val" onclick="dis('2')">2</button>
+            <button class="button" id="val" onclick="dis('3')">3</button>
+            <button class="button" id="val" onclick="dis('+')">+</button>
+        </div>
+        <div class="row">
+            <button class="button" id="val" onclick="dis('00')">00</button>
+            <button class="button" id="val" onclick="dis('0')">0</button>
+            <button class="button" id="val" onclick="dis('.')">.</button>
+            <button class="button" id="val" onclick="dis('=')">=</button>
+        </div>
+    </div>
 </body>
-<script>
-    // Function to append characters to the display
-    function appendToDisplay(value) {
-        document.getElementById('display').value += value;
-    }
-
-    // Function to clear the display
-    function clearDisplay() {
-        document.getElementById('display').value = '';
-    }
-
-    // Function to calculate the result
-    function calculateResult() {
-        try {
-            var result = eval(document.getElementById('display').value);
-            document.getElementById('display').value = result;
-        } catch (error) {
-            document.getElementById('display').value = 'Error';
+<script type="text/javascript">
+    function dis(val)
+    {
+        
+         if(val=='=')
+        {
+            var x=document.getElementById("t1").value
+            var y=eval(x);
+            document.getElementById("t1").value=y
+        }
+        else
+        {
+            document.getElementById("t1").value+=val;
         }
     }
+    function clr()
+    {
+        document.getElementById("t1").value=" ";
+    }
+    function cl()
+    {
+        var exp=document.getElementById("t1").value;
+    document.getElementById("t1").value=exp.substring(0,exp.length-1);
+    }
 </script>
+
 </html>
